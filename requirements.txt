@@ -1,0 +1,17 @@
+langchain
+langchain-openai
+langchain-community
+langchain-google-genai
+langgraph
+chromadb
+arxiv
+semanticscholar
+numpy
+scipy
+pytest
+python-dotenv
+jupyter
+sentence-transformers
+fastapi
+uvicorn
+pydantic
