@@ -5,6 +5,7 @@ This guide explains how to set up the environment and run the Scientific Agent (
 ## Prerequisites
 - **Python 3.10+**: Ensure Python is installed and added to your system PATH.
   - Verify with: `python --version`
+- **Internet Connection**: Required to fetch real research papers from arXiv
 
 ## Setup Instructions
 
@@ -30,5 +31,17 @@ To start the agent, run the main script:
 python main.py
 ```
 
+## Features
+
+- **Real-time Literature Search**: Automatically fetches research papers from arXiv based on your query
+- **AI-Powered Hypothesis Generation**: Uses Google Gemini to analyze papers and generate novel hypotheses
+- **Iterative Refinement**: Critic agent evaluates and provides feedback for hypothesis improvement
+- **Structured Output**: Generates comprehensive scientific proposals with problem statements, hypotheses, mathematical formulations, mechanisms, and next steps
+
 ## Expected Output
-The agent will simulate a reasoning process using the mock RAG tool and hypothesis generation using the mock Math tool. Output will be printed to the console showing the flow through the LangGraph nodes.
+The agent will:
+1. Search arXiv for relevant research papers based on your query
+2. Analyze the retrieved papers using AI
+3. Generate a structured scientific hypothesis
+4. Evaluate and refine the hypothesis through critic feedback
+5. Output a final comprehensive scientific proposal to the console

@@ -85,15 +85,26 @@ def reasoning_node(state: AgentState):
     
     # Use LLM to analyze the reason prompt and decide what to search for
     prompt = ChatPromptTemplate.from_template(
-        "Analyze the following user problem and generate a specific search query for scientific literature: {input}"
+        """Analyze the following user problem and generate a SHORT, CONCISE search query (maximum 10 words) for arXiv scientific literature.
+
+User Problem: {input}
+
+Return ONLY the search keywords, nothing else. Example format: "battery optimization cold temperature lithium ion"
+"""
     )
     chain = prompt | llm
     response = invoke_with_retries(chain, {"input": last_message.content})
     
     # Handle generic content type
     query = extract_text(response.content)
+    
+    # Ensure query is short enough for arXiv API
+    if len(query) > 200:
+        # Extract key terms if query is too long
+        words = query.split()[:10]
+        query = " ".join(words)
         
-    print(f"Generated Search Query:\n{query}")
+    print(f"Generated Search Query: {query}")
     
     # Call Member 1's tool
     research_results = rag.search_literature(query)
